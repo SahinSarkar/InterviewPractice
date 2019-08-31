@@ -1,26 +1,15 @@
 package com.paytm.sahin.util;
 
 public class Node {
+
 	public int num;
 	public Node next;
 
-	public Node(int num) {
-		this.num = num;
+	public Node() {
 	}
 
-	public static Node reverseLinkedList(Node actualList) {
-		if (actualList.next == null) {
-			return actualList;
-		} else {
-			Node nextReversed, tempList;
-			nextReversed = tempList = reverseLinkedList(actualList.next);
-			while (tempList.next != null) {
-				tempList = tempList.next;
-			}
-			tempList.next = actualList;
-			actualList.next = null;
-			return nextReversed;
-		}
+	public Node(int num) {
+		this.num = num;
 	}
 
 	public static Node createListFromDigitsOfNumber(String num) {
@@ -37,17 +26,29 @@ public class Node {
 		return digitsList;
 	}
 
-	public void printList() {
+	public String printList() {
+		StringBuilder listPrinter = new StringBuilder();
 		Node list = this;
-		while (list.next != null) {
-			System.out.print(list.num + "->");
-			list = list.next;
+		if(list != null) {
+			while (list.next != null) {
+				listPrinter.append(list.num + "->");
+				list = list.next;
+			}
+			listPrinter.append(list.num);
 		}
-		System.out.println(list.num);
+		return listPrinter.toString();
 	}
 
-	public Node() {
-		super();
-		// TODO Auto-generated constructor stub
+	public static Node reverseLinkedList(Node actualList) {
+		if (actualList == null || actualList.next == null) {
+			return actualList;
+		} else {
+			Node nextReversed;
+			nextReversed = reverseLinkedList(actualList.next);
+			actualList.next.next = actualList;
+			actualList.next = null;
+			return nextReversed;
+		}
 	}
+
 }

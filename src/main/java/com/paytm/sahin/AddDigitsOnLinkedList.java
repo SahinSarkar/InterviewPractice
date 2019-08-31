@@ -7,7 +7,8 @@ public class AddDigitsOnLinkedList {
 	public static void main(String[] args) {
 		Node n1 = Node.createListFromDigitsOfNumber("9878");
 		Node n2 = Node.createListFromDigitsOfNumber("5876");
-		addTwoLinkedListNumbers(n1, n2).printList();
+		String printedList = addTwoLinkedListNumbers(n1, n2).printList();
+		System.out.println(printedList);
 	}
 
 	public static Node addTwoLinkedListNumbers(Node firstNumber, Node secondNumber) {
@@ -24,6 +25,8 @@ public class AddDigitsOnLinkedList {
 					sumOfOnePlaceValue = firstNumberReversed.num + secondNumberReversed.num + carry;
 					if (sumOfOnePlaceValue >= 10) {
 						carry = 1;
+					} else {
+						carry = 0;
 					}
 					tempList.num = sumOfOnePlaceValue % 10;
 					firstNumberReversed = firstNumberReversed.next;
@@ -33,6 +36,8 @@ public class AddDigitsOnLinkedList {
 					sumOfOnePlaceValue = firstNumberReversed.num + carry;
 					if (sumOfOnePlaceValue > 10) {
 						carry = 1;
+					} else {
+						carry = 0;
 					}
 					tempList.num = sumOfOnePlaceValue % 10;
 					firstNumberReversed = firstNumberReversed.next;
@@ -40,6 +45,8 @@ public class AddDigitsOnLinkedList {
 					sumOfOnePlaceValue = secondNumberReversed.num + carry;
 					if (sumOfOnePlaceValue > 10) {
 						carry = 1;
+					} else {
+						carry = 0;
 					}
 					tempList.num = sumOfOnePlaceValue % 10;
 					secondNumberReversed = secondNumberReversed.next;
@@ -60,8 +67,4 @@ public class AddDigitsOnLinkedList {
 
 	}
 
-
-
-
 }
-
