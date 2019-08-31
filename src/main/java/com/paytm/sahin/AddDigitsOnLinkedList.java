@@ -1,14 +1,18 @@
+package com.paytm.sahin;
+
+import com.paytm.sahin.util.Node;
+
 public class AddDigitsOnLinkedList {
 
 	public static void main(String[] args) {
-		Node n = createListFromDigitsOfNumber("5876");
-		Node n1 = createListFromDigitsOfNumber("9874");
-		printList(addTwoLinkedListNumbers(n, n1));
+		Node n1 = Node.createListFromDigitsOfNumber("9878");
+		Node n2 = Node.createListFromDigitsOfNumber("5876");
+		addTwoLinkedListNumbers(n1, n2).printList();
 	}
 
 	public static Node addTwoLinkedListNumbers(Node firstNumber, Node secondNumber) {
-		Node firstNumberReversed = reverseLinkedList(firstNumber);
-		Node secondNumberReversed = reverseLinkedList(secondNumber);
+		Node firstNumberReversed = Node.reverseLinkedList(firstNumber);
+		Node secondNumberReversed = Node.reverseLinkedList(secondNumber);
 		Node resultList, tempList;
 		tempList = resultList = new Node();
 
@@ -49,62 +53,15 @@ public class AddDigitsOnLinkedList {
 			}
 		}
 
-		if(carry > 0) {
+		if (carry > 0) {
 			tempList.next = new Node(carry);
 		}
-		return reverseLinkedList(resultList);
-		
+		return Node.reverseLinkedList(resultList);
+
 	}
 
-	public static Node createListFromDigitsOfNumber(String num) throws NumberFormatException {
-		Node digitsList = new Node();
-		Node destroyableList = digitsList;
-		for (int i = 0; i < num.length(); i++) {
-			destroyableList.num = Integer.valueOf(num.charAt(i) + "");
-			if (i == num.length() - 1) {
-				break;
-			}
-			destroyableList.next = new Node();
-			destroyableList = destroyableList.next;
-		}
-		return digitsList;
-	}
 
-	public static Node reverseLinkedList(Node actualList) {
-		if (actualList.next == null) {
-			return actualList;
-		} else {
-			Node nextReversed, tempList;
-			nextReversed = tempList = reverseLinkedList(actualList.next);
-			while (tempList.next != null) {
-				tempList = tempList.next;
-			}
-			tempList.next = actualList;
-			actualList.next = null;
-			return nextReversed;
-		}
-	}
 
-	public static void printList(Node list) {
-		while (list.next != null) {
-			System.out.print(list.num + "->");
-			list = list.next;
-		}
-		System.out.println(list.num);
-	}
 
 }
 
-class Node {
-	int num;
-	Node next;
-
-	public Node(int num) {
-		this.num = num;
-	}
-
-	public Node() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-}
