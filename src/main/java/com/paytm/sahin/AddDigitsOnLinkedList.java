@@ -34,7 +34,7 @@ public class AddDigitsOnLinkedList {
 
 				} else if (firstNumberReversed != null) {
 					sumOfOnePlaceValue = firstNumberReversed.num + carry;
-					if (sumOfOnePlaceValue > 10) {
+					if (sumOfOnePlaceValue >= 10) {
 						carry = 1;
 					} else {
 						carry = 0;
@@ -43,7 +43,7 @@ public class AddDigitsOnLinkedList {
 					firstNumberReversed = firstNumberReversed.next;
 				} else if (secondNumberReversed != null) {
 					sumOfOnePlaceValue = secondNumberReversed.num + carry;
-					if (sumOfOnePlaceValue > 10) {
+					if (sumOfOnePlaceValue >= 10) {
 						carry = 1;
 					} else {
 						carry = 0;
